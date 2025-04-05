@@ -62,6 +62,7 @@
     --input: 217.2 32.6% 17.5%;
     --ring: 224.3 76.3% 48%;
   }
+
 }
 
 
@@ -84,3 +85,29 @@ html{
   position: relative;
   width: 100%;
 }
+
+.input {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: #374151; /* Tailwind bg-gray-700 */
+  color: white;
+  border: 1px solid #4b5563; /* Tailwind border-gray-600 */
+  outline: none;
+}
+
+.input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #226ec5; /* Tailwind ring-2 ring-green-500 */
+}
+
+.file-input {
+  width: 100%;
+  padding: 0.5rem 0.75rem; /* py-2 px-3 */
+  border-radius: 0.375rem; /* Tailwind rounded-md */
+  background-color: #374151; /* Tailwind bg-gray-700 */
+  color: white;
+  border: 1px solid #4b5563; /* Tailwind border-gray-600 */
+}
+
+

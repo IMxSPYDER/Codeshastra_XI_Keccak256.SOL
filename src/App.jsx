@@ -18,12 +18,19 @@ import Chatbot from './components/chatbot/Chatbot';
 import GlowingBackground from "./components/GlowingBackground";
 import EcosystemComponent from "./components/EcosystemComponent";
 import { ThemeContext } from "./Context/ThemeContext";
+import RoleSelector from "./components/RoleSelector";
+import OrganizerRegistration from "./components/OrganizerRegistration";
+import VoterRegistration from "./components/VoterRegistration";
 const App = () => {
   const [account, setAccount] = useState(null);
   const [isRegistered, setIsRegistered] = useState(false);
 
+  const [role, setRole] = useState(null); // 'organizer' or 'voter'
+  const [showRoleSelector, setShowRoleSelector] = useState(false);
+
+
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light"); 
-  const contractAddress = '0x6f2eEf81Db6955FDb6e8DFfA741e33924190b3cD'; // Replace with actual contract address
+  const contractAddress = '0xa9783Ef7f13A8A2cbaDD3e9a7457dC2c0189FD61'; // Replace with actual contract address
 
 
   const connectWallet = async () => {
@@ -37,6 +44,7 @@ const App = () => {
         );
         setAccount(accounts[0]); 
         checkUserRegistration(accounts[0]); // Check if the user is already registered
+        setShowRoleSelector(true);
       } catch (error) {
         console.error("Error connecting to MetaMask", error);
       }
@@ -97,7 +105,19 @@ const App = () => {
 
         {account ? (
         console.log(account),
-        {/* <RegisterPopup account={account} contractAddress={contractAddress} /> */}
+        <>
+            {/* Show Role Selector if not chosen yet */}
+            {showRoleSelector && !role && (
+              <RoleSelector onSelect={(selectedRole) => {
+                setRole(selectedRole);
+                setShowRoleSelector(false);
+              }} />
+            )}
+
+            {/* Show registration page based on role */}
+            {role === 'organizer' && <OrganizerRegistration account={account} />}
+            {role === 'voter' && <VoterRegistration account={account} />}
+          </>
         ) : (
           <>
             <Landing theme={theme} />

@@ -1,182 +1,276 @@
 [
 	{
-		"anonymous": false,
 		"inputs": [
 			{
-				"indexed": true,
 				"internalType": "address",
-				"name": "user",
+				"name": "_verifier",
 				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "address",
-				"name": "requester",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "credentialHash",
-				"type": "string"
 			}
 		],
-		"name": "AccessGranted",
-		"type": "event"
+		"stateMutability": "nonpayable",
+		"type": "constructor"
 	},
 	{
-		"anonymous": false,
-		"inputs": [
+		"inputs": [],
+		"name": "admin",
+		"outputs": [
 			{
-				"indexed": true,
 				"internalType": "address",
-				"name": "user",
+				"name": "",
 				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "address",
-				"name": "requester",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "credentialHash",
-				"type": "string"
 			}
 		],
-		"name": "AccessRevoked",
-		"type": "event"
+		"stateMutability": "view",
+		"type": "function"
 	},
 	{
-		"anonymous": false,
 		"inputs": [
 			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "user",
-				"type": "address"
+				"internalType": "string",
+				"name": "title",
+				"type": "string"
 			},
 			{
-				"indexed": false,
 				"internalType": "string",
-				"name": "credentialHash",
+				"name": "description",
 				"type": "string"
+			},
+			{
+				"internalType": "enum ZKVotePlatform.VotingType",
+				"name": "votingType",
+				"type": "uint8"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "locationHash",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "uint256",
+				"name": "startTime",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "endTime",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string[]",
+				"name": "candidateNames",
+				"type": "string[]"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "ages",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "string[]",
+				"name": "designations",
+				"type": "string[]"
+			},
+			{
+				"internalType": "string[]",
+				"name": "logoHashes",
+				"type": "string[]"
 			}
 		],
-		"name": "CredentialAdded",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
+		"name": "createElection",
+		"outputs": [
 			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "user",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "address",
-				"name": "requester",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "credentialHash",
-				"type": "string"
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
 			}
 		],
-		"name": "CredentialRequested",
-		"type": "event"
+		"stateMutability": "nonpayable",
+		"type": "function"
 	},
 	{
-		"anonymous": false,
-		"inputs": [
+		"inputs": [],
+		"name": "electionCount",
+		"outputs": [
 			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "user",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "address",
-				"name": "verifier",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "credentialHash",
-				"type": "string"
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
 			}
 		],
-		"name": "CredentialVerified",
-		"type": "event"
+		"stateMutability": "view",
+		"type": "function"
 	},
 	{
-		"anonymous": false,
 		"inputs": [
 			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "user",
-				"type": "address"
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "elections",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "title",
+				"type": "string"
 			},
 			{
-				"indexed": false,
+				"internalType": "string",
+				"name": "description",
+				"type": "string"
+			},
+			{
+				"internalType": "enum ZKVotePlatform.VotingType",
+				"name": "votingType",
+				"type": "uint8"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "locationHash",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "uint256",
+				"name": "startTime",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "endTime",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "isActive",
+				"type": "bool"
+			},
+			{
+				"internalType": "address",
+				"name": "createdBy",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "electionId",
+				"type": "uint256"
+			}
+		],
+		"name": "endElection",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "electionId",
+				"type": "uint256"
+			}
+		],
+		"name": "getCandidates",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "age",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "partyOrDesignation",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "logoHash",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "voteCount",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct ZKVotePlatform.Candidate[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "organizations",
+		"outputs": [
+			{
 				"internalType": "string",
 				"name": "name",
 				"type": "string"
 			},
 			{
-				"indexed": false,
+				"internalType": "string",
+				"name": "gstNo",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "empName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "empId",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "designation",
+				"type": "string"
+			},
+			{
 				"internalType": "string",
 				"name": "email",
 				"type": "string"
 			},
 			{
-				"indexed": false,
-				"internalType": "enum DecentralizedIdentity.Role",
-				"name": "role",
-				"type": "uint8"
-			}
-		],
-		"name": "UserRegistered",
-		"type": "event"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "accessRequests",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "requester",
-				"type": "address"
-			},
-			{
 				"internalType": "string",
-				"name": "credentialHash",
+				"name": "phone",
 				"type": "string"
 			},
 			{
+				"internalType": "string",
+				"name": "idDocHash",
+				"type": "string"
+			},
+			{
+				"internalType": "enum ZKVotePlatform.Role",
+				"name": "roleType",
+				"type": "uint8"
+			},
+			{
 				"internalType": "bool",
-				"name": "isApproved",
+				"name": "registered",
 				"type": "bool"
 			}
 		],
@@ -192,7 +286,55 @@
 			},
 			{
 				"internalType": "string",
-				"name": "certificateId",
+				"name": "gstNo",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "empName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "empId",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "designation",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "email",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "phone",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "idDocHash",
+				"type": "string"
+			},
+			{
+				"internalType": "enum ZKVotePlatform.Role",
+				"name": "roleType",
+				"type": "uint8"
+			}
+		],
+		"name": "registerOrganization",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "fullName",
 				"type": "string"
 			},
 			{
@@ -202,454 +344,124 @@
 			},
 			{
 				"internalType": "string",
-				"name": "certificateName",
+				"name": "gender",
 				"type": "string"
 			},
 			{
+				"internalType": "string",
+				"name": "photoHash",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "govIdHash",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "phone",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "email",
+				"type": "string"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "locationHash",
+				"type": "bytes32"
+			}
+		],
+		"name": "registerVoter",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "userRoles",
+		"outputs": [
+			{
+				"internalType": "enum ZKVotePlatform.Role",
+				"name": "",
+				"type": "uint8"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "verifier",
+		"outputs": [
+			{
+				"internalType": "contract IZKPVerifier",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "voterAddr",
+				"type": "address"
+			}
+		],
+		"name": "verifyVoter",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "uint256",
-				"name": "age",
+				"name": "electionId",
 				"type": "uint256"
 			},
 			{
-				"internalType": "string",
-				"name": "documentIPFSHash",
-				"type": "string"
+				"internalType": "uint256[]",
+				"name": "selectedCandidates",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "nullifierHash",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "uint256[2]",
+				"name": "a",
+				"type": "uint256[2]"
+			},
+			{
+				"internalType": "uint256[2][2]",
+				"name": "b",
+				"type": "uint256[2][2]"
+			},
+			{
+				"internalType": "uint256[2]",
+				"name": "c",
+				"type": "uint256[2]"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "input",
+				"type": "uint256[]"
 			}
 		],
-		"name": "addCredential",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "getAccessRequests",
-		"outputs": [
-			{
-				"components": [
-					{
-						"internalType": "address",
-						"name": "requester",
-						"type": "address"
-					},
-					{
-						"internalType": "string",
-						"name": "credentialHash",
-						"type": "string"
-					},
-					{
-						"internalType": "bool",
-						"name": "isApproved",
-						"type": "bool"
-					}
-				],
-				"internalType": "struct DecentralizedIdentity.AccessRequest[]",
-				"name": "",
-				"type": "tuple[]"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "getCompleteUserData",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			},
-			{
-				"internalType": "uint8",
-				"name": "",
-				"type": "uint8"
-			},
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			},
-			{
-				"components": [
-					{
-						"internalType": "string",
-						"name": "name",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "certificateId",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "dob",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "certificateName",
-						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "age",
-						"type": "uint256"
-					},
-					{
-						"internalType": "string",
-						"name": "documentIPFSHash",
-						"type": "string"
-					},
-					{
-						"internalType": "bool",
-						"name": "isVerified",
-						"type": "bool"
-					},
-					{
-						"internalType": "bool",
-						"name": "isRevoked",
-						"type": "bool"
-					}
-				],
-				"internalType": "struct DecentralizedIdentity.Credential[]",
-				"name": "",
-				"type": "tuple[]"
-			},
-			{
-				"components": [
-					{
-						"internalType": "address",
-						"name": "requester",
-						"type": "address"
-					},
-					{
-						"internalType": "string",
-						"name": "credentialHash",
-						"type": "string"
-					},
-					{
-						"internalType": "bool",
-						"name": "isApproved",
-						"type": "bool"
-					}
-				],
-				"internalType": "struct DecentralizedIdentity.AccessRequest[]",
-				"name": "",
-				"type": "tuple[]"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "getUserCredentials",
-		"outputs": [
-			{
-				"components": [
-					{
-						"internalType": "string",
-						"name": "name",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "certificateId",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "dob",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "certificateName",
-						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "age",
-						"type": "uint256"
-					},
-					{
-						"internalType": "string",
-						"name": "documentIPFSHash",
-						"type": "string"
-					},
-					{
-						"internalType": "bool",
-						"name": "isVerified",
-						"type": "bool"
-					},
-					{
-						"internalType": "bool",
-						"name": "isRevoked",
-						"type": "bool"
-					}
-				],
-				"internalType": "struct DecentralizedIdentity.Credential[]",
-				"name": "",
-				"type": "tuple[]"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_user",
-				"type": "address"
-			}
-		],
-		"name": "getUserData",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			},
-			{
-				"internalType": "uint8",
-				"name": "",
-				"type": "uint8"
-			},
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			},
-			{
-				"components": [
-					{
-						"internalType": "string",
-						"name": "name",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "certificateId",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "dob",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "certificateName",
-						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "age",
-						"type": "uint256"
-					},
-					{
-						"internalType": "string",
-						"name": "documentIPFSHash",
-						"type": "string"
-					},
-					{
-						"internalType": "bool",
-						"name": "isVerified",
-						"type": "bool"
-					},
-					{
-						"internalType": "bool",
-						"name": "isRevoked",
-						"type": "bool"
-					}
-				],
-				"internalType": "struct DecentralizedIdentity.Credential[]",
-				"name": "",
-				"type": "tuple[]"
-			},
-			{
-				"components": [
-					{
-						"internalType": "address",
-						"name": "requester",
-						"type": "address"
-					},
-					{
-						"internalType": "string",
-						"name": "credentialHash",
-						"type": "string"
-					},
-					{
-						"internalType": "bool",
-						"name": "isApproved",
-						"type": "bool"
-					}
-				],
-				"internalType": "struct DecentralizedIdentity.AccessRequest[]",
-				"name": "",
-				"type": "tuple[]"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_user",
-				"type": "address"
-			}
-		],
-		"name": "getUserDetails",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			},
-			{
-				"internalType": "uint8",
-				"name": "",
-				"type": "uint8"
-			},
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "getUserRole",
-		"outputs": [
-			{
-				"internalType": "uint8",
-				"name": "",
-				"type": "uint8"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "requester",
-				"type": "address"
-			},
-			{
-				"internalType": "string",
-				"name": "credentialHash",
-				"type": "string"
-			},
-			{
-				"internalType": "bool",
-				"name": "zkVerification",
-				"type": "bool"
-			}
-		],
-		"name": "grantAccess",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_user",
-				"type": "address"
-			}
-		],
-		"name": "isUserRegistered",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_email",
-				"type": "string"
-			},
-			{
-				"internalType": "uint8",
-				"name": "_role",
-				"type": "uint8"
-			}
-		],
-		"name": "registerUser",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "user",
-				"type": "address"
-			},
-			{
-				"internalType": "string",
-				"name": "credentialHash",
-				"type": "string"
-			}
-		],
-		"name": "requestCredential",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "requester",
-				"type": "address"
-			},
-			{
-				"internalType": "string",
-				"name": "credentialHash",
-				"type": "string"
-			}
-		],
-		"name": "revokeAccess",
+		"name": "vote",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -660,23 +472,13 @@
 				"internalType": "address",
 				"name": "",
 				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
 			}
 		],
-		"name": "userCredentials",
+		"name": "voters",
 		"outputs": [
 			{
 				"internalType": "string",
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "certificateId",
+				"name": "fullName",
 				"type": "string"
 			},
 			{
@@ -686,88 +488,41 @@
 			},
 			{
 				"internalType": "string",
-				"name": "certificateName",
+				"name": "gender",
 				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "age",
-				"type": "uint256"
 			},
 			{
 				"internalType": "string",
-				"name": "documentIPFSHash",
+				"name": "photoHash",
 				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "govIdHash",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "phone",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "email",
+				"type": "string"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "locationHash",
+				"type": "bytes32"
 			},
 			{
 				"internalType": "bool",
 				"name": "isVerified",
 				"type": "bool"
-			},
-			{
-				"internalType": "bool",
-				"name": "isRevoked",
-				"type": "bool"
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "users",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "userAddress",
-				"type": "address"
-			},
-			{
-				"internalType": "enum DecentralizedIdentity.Role",
-				"name": "role",
-				"type": "uint8"
-			},
-			{
-				"internalType": "bool",
-				"name": "isRegistered",
-				"type": "bool"
-			},
-			{
-				"internalType": "string",
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "email",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "user",
-				"type": "address"
-			},
-			{
-				"internalType": "string",
-				"name": "credentialHash",
-				"type": "string"
-			}
-		],
-		"name": "verifyCredential",
-		"outputs": [],
-		"stateMutability": "nonpayable",
 		"type": "function"
 	}
 ]
