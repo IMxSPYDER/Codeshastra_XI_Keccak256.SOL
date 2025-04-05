@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { ethers } from 'ethers';
 import axios from 'axios';
 import contractABI from '../web3/abi.json';
+import { useNavigate } from 'react-router-dom';
+
 
 const contractAddress = '0xa9783Ef7f13A8A2cbaDD3e9a7457dC2c0189FD61';
 
@@ -9,6 +11,8 @@ const PINATA_API_KEY = '367c1b5c7f0fb67793c3';
 const PINATA_SECRET_API_KEY = 'a5d60bb60520c9318d42dd759cde1361527fd98a46a0b5a4a4b4fa5a60d57c07';
 
 const OrganizerRegistration = ({ account }) => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: '',
     gstNo: '',
@@ -74,6 +78,7 @@ const OrganizerRegistration = ({ account }) => {
 
       await tx.wait();
       alert("✅ Organization registered successfully!");
+      navigate('/organization-dashboard');
     } catch (error) {
       console.error(error);
       alert("❌ Registration failed.");

@@ -6,13 +6,13 @@ import { getStorage } from 'firebase/storage';
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyC998t2rePEe46_ZsRBzcJWpnKg6ea__-0",
-    authDomain: "votesphere-d8fac.firebaseapp.com",
-    projectId: "votesphere-d8fac",
-    storageBucket: "votesphere-d8fac.firebasestorage.app",
-    messagingSenderId: "556589487791",
-    appId: "1:556589487791:web:81020da6ae2cb46e6e665a",
-    measurementId: "G-J9WL3F3JJX"
+    apiKey: "AIzaSyB-sZKKGEi2RU17rsTBYbaDOM-sIWdFXzQ",
+    authDomain: "votesphere-86a61.firebaseapp.com",
+    projectId: "votesphere-86a61",
+    storageBucket: "votesphere-86a61.firebasestorage.app",
+    messagingSenderId: "855335981460",
+    appId: "1:855335981460:web:a763ed36841785ee787f81",
+    measurementId: "G-NQ2T8DBBPT"
 };
 
 const app = initializeApp(firebaseConfig);

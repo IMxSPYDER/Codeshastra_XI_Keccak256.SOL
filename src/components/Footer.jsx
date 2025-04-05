@@ -54,7 +54,7 @@ export default function Footer() {
             </Link>
           </div>
         </div>
-        <div className="text-center text-xs text-gray-500 mt-8">© 2025 Dot_Sol All Rights Reserved.</div>
+        <div className="text-center text-xs text-gray-500 mt-8">© 2025 Keccak256.Sol All Rights Reserved.</div>
       </div>
     </div>
   );

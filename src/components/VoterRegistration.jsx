@@ -1,38 +1,34 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { ethers } from 'ethers';
 import axios from 'axios';
 import contractABI from '../web3/abi.json';
-import Webcam from 'react-webcam';
-import * as faceapi from 'face-api.js';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { storage } from '../Firebase/firebase.js'; // Firebase config module
+// import 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
+
+
 
 const contractAddress = '0xa9783Ef7f13A8A2cbaDD3e9a7457dC2c0189FD61';
 
+// Pinata keys (replace with env vars in prod)
+const PINATA_API_KEY = '367c1b5c7f0fb67793c3';
+const PINATA_SECRET_API_KEY = 'a5d60bb60520c9318d42dd759cde1361527fd98a46a0b5a4a4b4fa5a60d57c07';
+
 const VoterRegistration = ({ account }) => {
+
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullName: '',
     dob: '',
     gender: '',
+    photo: null,
     govId: null,
     phone: '',
     email: '',
-    locationHash: '',
+    locationHash: ''
   });
 
   const [loading, setLoading] = useState(false);
-  const webcamRef = useRef(null);
-
-  // Load face-api models
-  useEffect(() => {
-    const loadModels = async () => {
-      const MODEL_URL = 'https://justadudewhohacks.github.io/face-api.js/models';
-      await faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL);
-      await faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL);
-      await faceapi.nets.faceRecognitionNet.loadFromUri(MODEL_URL);
-    };
-    loadModels();
-  }, []);
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -43,49 +39,30 @@ const VoterRegistration = ({ account }) => {
     }
   };
 
-  const uploadGovIdToIPFS = async (file) => {
-    const pinataFormData = new FormData();
-    pinataFormData.append('file', file);
-    pinataFormData.append('pinataMetadata', JSON.stringify({ name: file.name }));
-    pinataFormData.append('pinataOptions', JSON.stringify({ cidVersion: 1 }));
+  const uploadToIPFS = async (file) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('pinataMetadata', JSON.stringify({ name: file.name }));
+    formData.append('pinataOptions', JSON.stringify({ cidVersion: 1 }));
 
-    const res = await axios.post('https://api.pinata.cloud/pinning/pinFileToIPFS', pinataFormData, {
+    const res = await axios.post('https://api.pinata.cloud/pinning/pinFileToIPFS', formData, {
       maxContentLength: 'Infinity',
       headers: {
         'Content-Type': 'multipart/form-data',
-        pinata_api_key: '367c1b5c7f0fb67793c3',
-        pinata_secret_api_key: 'a5d60bb60520c9318d42dd759cde1361527fd98a46a0b5a4a4b4fa5a60d57c07',
+        pinata_api_key: PINATA_API_KEY,
+        pinata_secret_api_key: PINATA_SECRET_API_KEY,
       }
     });
 
     return `https://gateway.pinata.cloud/ipfs/${res.data.IpfsHash}`;
   };
 
-  const captureAndUploadPhoto = async () => {
-    const imageSrc = webcamRef.current.getScreenshot();
-    const blob = await (await fetch(imageSrc)).blob();
-
-    const photoRef = ref(storage, `voter_photos/${formData.email || Date.now()}.jpg`);
-    await uploadBytes(photoRef, blob);
-    const downloadURL = await getDownloadURL(photoRef);
-
-    const img = await faceapi.bufferToImage(blob);
-    const detection = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor();
-
-    if (!detection) throw new Error("Face not detected");
-
-    return {
-      photoUrl: downloadURL,
-      faceVector: Array.from(detection.descriptor)
-    };
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const { photoUrl, faceVector } = await captureAndUploadPhoto();
-      const govIdHash = await uploadGovIdToIPFS(formData.govId);
+      const photoHash = await uploadToIPFS(formData.photo);
+      const govIdHash = await uploadToIPFS(formData.govId);
 
       const provider = new ethers.BrowserProvider(window.ethereum);
       const signer = await provider.getSigner();
@@ -95,8 +72,8 @@ const VoterRegistration = ({ account }) => {
         formData.fullName,
         formData.dob,
         formData.gender,
-        photoUrl, // stored on Firebase
-        govIdHash, // stored on IPFS
+        photoHash,
+        govIdHash,
         formData.phone,
         formData.email,
         ethers.encodeBytes32String(formData.locationHash)
@@ -104,10 +81,7 @@ const VoterRegistration = ({ account }) => {
 
       await tx.wait();
       alert("✅ Voter registered successfully!");
-
-      // (Optional) Save faceVector to Firebase/Firestore for login matching
-      console.log("Face vector:", faceVector);
-
+      navigate('/user-dashboard');
     } catch (error) {
       console.error(error);
       alert("❌ Registration failed.");
@@ -118,60 +92,61 @@ const VoterRegistration = ({ account }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center backdrop-blur-lg bg-opacity-70 z-50 p-4">
-      <form
+        
+      <form 
         onSubmit={handleSubmit}
-        className="relative bg-gradient-to-br from-gray-900 to-gray-800 text-white p-8 rounded-2xl shadow-xl w-full max-w-2xl h-[90vh] overflow-y-auto border border-gray-700"
+        className="relative  bg-gradient-to-br from-gray-900 to-gray-800 text-white p-8 rounded-2xl shadow-xl w-full max-w-2xl h-[90vh] overflow-y-auto border border-gray-700"
       >
         <button
-          onClick={() => window.location.reload()}
-          className="absolute top-4 right-4 cursor-pointer text-white text-3xl hover:text-red-500 focus:outline-none"
-          aria-label="Close"
-        >
-          &times;
-        </button>
-
+    onClick={() => window.location.reload()} // or your custom close handler
+    className="absolute top-4 right-4 cursor-pointer text-white text-3xl hover:text-red-500 focus:outline-none"
+    aria-label="Close"
+  >
+    &times;
+  </button>
         <h2 className="text-3xl font-bold text-center mb-8">Voter Registration</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Full Name */}
           <div>
             <label className="block text-sm mb-1">Full Name</label>
             <input type="text" name="fullName" value={formData.fullName} onChange={handleChange} required className="input" />
           </div>
 
+          {/* Date of Birth */}
           <div>
             <label className="block text-sm mb-1">Date of Birth</label>
             <input type="text" name="dob" value={formData.dob} onChange={handleChange} required className="input" />
           </div>
 
+          {/* Gender */}
           <div>
             <label className="block text-sm mb-1">Gender</label>
             <input type="text" name="gender" value={formData.gender} onChange={handleChange} required className="input" />
           </div>
 
+          {/* Phone */}
           <div>
             <label className="block text-sm mb-1">Phone</label>
             <input type="text" name="phone" value={formData.phone} onChange={handleChange} required className="input" />
           </div>
 
+          {/* Email */}
           <div>
             <label className="block text-sm mb-1">Email</label>
             <input type="email" name="email" value={formData.email} onChange={handleChange} required className="input" />
           </div>
 
+          {/* Location */}
           <div>
             <label className="block text-sm mb-1">Location (hashed)</label>
             <input type="text" name="locationHash" value={formData.locationHash} onChange={handleChange} required className="input" />
           </div>
 
-          {/* Webcam Photo */}
+          {/* Photo Upload */}
           <div className="md:col-span-2">
-            <label className="block text-sm mb-1">Capture Photo</label>
-            <Webcam
-              audio={false}
-              ref={webcamRef}
-              screenshotFormat="image/jpeg"
-              className="rounded-xl border border-gray-600 w-full h-[300px] object-cover"
-            />
+            <label className="block text-sm mb-1">Upload Photo</label>
+            <input type="file" name="photo" accept="image/*" onChange={handleChange} required className="file-input" />
           </div>
 
           {/* Gov ID Upload */}

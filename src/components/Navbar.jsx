@@ -90,7 +90,7 @@ const Navbar = ({ account, connectWallet, disconnectWallet,theme,toggleTheme }) 
           <Button text={"Connect Wallet"} click={connectWallet}></Button>
 
         )}
-                <button onClick={toggleTheme} className="ml-4 p-2 rounded-full">
+                <button onClick={toggleTheme} className="ml-4 p-2 cursor-pointer rounded-full">
           {theme === "dark" ? (
             <FaSun className="text-white-500" size={24} />
           ) : (
