@@ -24,7 +24,7 @@ const Navbar = ({ account, connectWallet, disconnectWallet,theme,toggleTheme }) 
             className="rounded-[50%] h-[20px] w-[19px]"
           />
           <span className={`font-bold  ${theme === "dark" ? " text-white" : " text-black"} `}>
-            Tru<span className="!text-blue-500">Chain</span>
+            Vote<span className="!text-blue-500">Sphere</span>
           </span>
         </Link>
 

@@ -13,7 +13,7 @@ export default function Footer() {
           <Link to="/" className="flex items-center gap-2">
             <img src={logo} alt="0xETHDao Logo" width={35} height={40} />
             <span className={`font-bold text-3xl ${theme === "dark" ? "text-white" : "text-black"}`}>
-              Tru<span className={`text-blue-500 ${theme === "dark" ? "text-blue-300" : "text-blue-500"}`}>Chain</span>
+              Vote<span className={`text-blue-500 ${theme === "dark" ? "text-blue-300" : "text-blue-500"}`}>Sphere</span>
             </span>
           </Link>
           <nav className="flex items-center gap-6">

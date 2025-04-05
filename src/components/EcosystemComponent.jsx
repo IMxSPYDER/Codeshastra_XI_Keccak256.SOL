@@ -19,13 +19,13 @@ const EcosystemComponent = ({ theme }) => {
             theme === "dark" ? "text-white" : "text-black"
           }`}
         >
-          Secure, and Private, <br />
+          Secure and Private <br />
           <span
             className={`${
               theme === "dark" ? "text-blue-400" : "text-blue-600"
             }`}
           >
-            TruChain
+            VoteSphere
           </span>
         </h1>
         <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -40,11 +40,11 @@ const EcosystemComponent = ({ theme }) => {
               title: "Trusted by",
               desc1: "Leading Organizations",
               desc2:
-                "Universities, enterprises, and governments.",
+                "Universities, enterprises and governments.",
             },
             {
               title: "10x",
-              desc1: "Faster Identity Verificatio",
+              desc1: "Faster Identity Verification",
               desc2:
                 "Instant, privacy-preserving credential verification without intermediaries.",
             },

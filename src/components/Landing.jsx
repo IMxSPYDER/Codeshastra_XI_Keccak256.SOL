@@ -10,16 +10,16 @@ const Landing = ({theme}) => {
     <div className='flex flex-col md:flex-row items-center  justify-center md:w-11/12 w-full'>
         <div className='md:w-1/2 md:gap-5 h-full w-full px-20 flex flex-col gap-10 justify-center'>
         <small className={` text-lg ${theme === "dark" ? "text-white" : "text-black"}`}>Empowering Digital Identity in a Decentralized World</small>
-        <h1 className='text-6xl font-bold'><span className='text-blue-400'>TruChain</span> Members' Club</h1>
-        <p className={`text-sx w-full ${theme === "dark" ? "text-white" : "text-black"}`}>Join a community of visionaries, innovators, and builders shaping the future of self-sovereign identity. With TruChain, you take control of your digital credentials, ensuring security, privacy, and seamless verification.</p>
+        <h1 className='text-6xl font-bold'><span className='text-blue-400'>VoteSphere</span> Empowering Trust</h1>
+        <p className={`text-sx w-full ${theme === "dark" ? "text-white" : "text-black"}`}>VoteSphere is a decentralized voting platform using blockchain, zero-knowledge proofs, and smart contracts to enable secure, private and verifiable elections — without exposing voter identity or preferences.</p>
         <div className='text-sx flex flex-row gap-10'>
             <div>
-                <p className='mb-4'><span className='text-green-500'>✔</span> Exclusive Community</p>
-                <p className='mb-4'><span className='text-green-500'>✔</span> Recognition and Visibility</p>
+                <p className='mb-4'><span className='text-green-500'>✔</span> Unmatched Privacy</p>
+                <p className='mb-4'><span className='text-green-500'>✔</span> Geo-Secure Participation</p>
             </div>
             <div>
-                <p className='mb-4'><span className='text-green-500'>✔</span> Collaborative Projects</p>
-                <p className='mb-4'><span className='text-green-500'>✔</span> Empowerment and Impact</p>
+                <p className='mb-4'><span className='text-green-500'>✔</span> Instant Transparency</p>
+                <p className='mb-4'><span className='text-green-500'>✔</span> Versatile Voting</p>
             </div>
         </div>
         {/* <Button  text = {"Get Connected"}/> */}

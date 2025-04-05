@@ -8,18 +8,18 @@ import img6 from '../assets/6.png'
 const benefits = [
   {
     icon: img1,
-    title: " Self-Sovereign Identity (SSI)",
-    description: "A user-friendly interface where individuals can manage their digital identity, view issued credentials, track verification requests, and control access to their personal data."
+    title: " Geo-Fenced Voting Access",
+    description: "Enable or restrict voting based on users' physical or IP location — ideal for local elections, community decisions, and region-specific governance."
   },
   {
     icon: img2,
     title: "Zero-Knowledge Proofs (ZKP)",
-    description: "Enable users to verify specific attributes (e.g., “I am over 18”) without revealing full details (e.g., birthdate). This enhances privacy while maintaining trust."
+    description: "Enable users to verify specific attributes without revealing full details. This enhances privacy while maintaining trust."
   },
   {
     icon: img3,
     title: "Interoperability with Other DID Standards",
-    description: "Support for multiple decentralized identity protocols (e.g., W3C DID, Hyperledger Indy, Sovrin, etc.), ensuring seamless integration across various blockchain ecosystems."
+    description: "Support for multiple decentralized identity protocols (W3C DID, Hyperledger Indy, Sovrin, etc.), ensuring seamless integration across various blockchain ecosystems."
   },
   {
     icon: img4,
@@ -28,8 +28,8 @@ const benefits = [
   },
   {
     icon: img5,
-    title: "Revocable & Expiring Credentials",
-    description: "Allow issuers to revoke or set expiration dates for credentials, ensuring outdated or compromised credentials don’t remain in use."
+    title: "Multi-Factor Authentication",
+    description: "Secure voter login through a combination of password, biometric verification and SMS/OTP — making impersonation virtually impossible."
   },
   {
     icon: img6,
@@ -41,10 +41,10 @@ const benefits = [
 export default function BenefitCard({ theme }) {
   return (
     <div className={`${theme === "dark" ? "text-white" : "text-black"} py-16 px-6 text-center`}>
-      <small className={`${theme === "dark" ? "text-white" : "text-black"} uppercase text-lg`}>Benefits of TruChain</small>
-      <h2 className={`${theme === "dark" ? "text-white" : "text-black"} text-5xl font-bold my-4`}>Unlock Exclusive Opportunities</h2>
+      <small className={`${theme === "dark" ? "text-white" : "text-black"} uppercase text-lg`}>Benefits of VoteSphere</small>
+      <h2 className={`${theme === "dark" ? "text-white" : "text-black"} text-5xl font-bold my-4`}>Be Part of a Future-Ready Democracy</h2>
       <p className={`${theme === "dark" ? "text-gray-300" : "text-gray-700"} max-w-3xl text-lg mx-auto mb-10`}>
-      As a member of the TruChain community, you gain access to a world of exclusive opportunities that empower you to thrive personally and professionally.
+      As a member of the VoteSphere community, you contribute to building a more transparent, secure and inclusive voting ecosystem — shaping how decisions are made in communities, organizations and governance for years to come.
       </p>
       <div className="grid md:grid-cols-3 gap-6 p-10 px-20 text-white w-5/6 mx-auto"></div>
     
